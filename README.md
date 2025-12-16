@@ -153,10 +153,26 @@ exit
   Figure 2. Network Traffic Analysis – Ping from Klient-Windows-G to Klient-Windows-K1
 </div><br>
 
-Network connectivity was also verified by sending queries to the DNS server (site: `serwer-firmowy.pl`) on the `Windows-server` machine from `Klient-Windows-G`.
+Network connectivity was also verified by sending queries to the DNS server (site: `serwer-firmowy.pl`) on the `Windows-server` machine from `Klient-Windows-G`.<br>
+
 ![](https://raw.githubusercontent.com/suronomo/gns3_ripng_implementation/main/figures/dns_server_www.png)
 <div align="center" style="font-size:17px;">
   Figure 3. Test web page hosted on Windows-Server machine
 </div><br>
 
+![](https://raw.githubusercontent.com/suronomo/gns3_ripng_implementation/main/figures/dns_server_www_ping.png)
+<div align="center" style="font-size:17px;">
+  Figure 4. Network Traffic Analysis – DNS-related ping from Klient-Windows-G to Windows-Server
+</div><br>
+
 ## 5. Conclusion
+
+The applied RIPng configuration ensured proper route propagation without manual static routing, which simplified network management in the multi-segment topology. Connectivity tests, including ICMP echo requests and DNS-related queries, confirmed that end devices in different network locations were able to communicate reliably with services hosted in the DMZ.
+
+The successful operation of network services such as DNS and a test web server demonstrates that RIPng is sufficient for small to medium-sized IPv6 networks where simplicity and ease of configuration are prioritized. The results confirm that the designed topology, IPv6 addressing scheme, and routing configuration meet the assumed project objectives and validate the correctness of the implemented solution.
+
+## 6. Limitations
+- **Limited hop count** – RIPng supports a maximum of 15 hops, which restricts its use in larger or more complex network topologies.
+- **Slow convergence** – as a distance-vector routing protocol, RIPng converges slower after topology changes compared to link-state protocols.
+- **Limited scalability** – due to periodic route updates and hop-count-based metrics, RIPng is suitable mainly for small to medium-sized IPv6 networks.
+- **Lack of advanced routing policies** – RIPng does not provide native mechanisms for fine-grained traffic control, such as advanced routing policies or fast failover capabilities.
